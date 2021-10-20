@@ -10,10 +10,7 @@ class MessagensController {
 
         const result = await service.execute(message, user_id);
 
-        console.log(result)
-
         return response.json(result);
-
 
     }
 }
