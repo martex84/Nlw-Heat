@@ -1,0 +1,10 @@
+.ContentWrapper {
+    max-width: 1200px;
+    height: 100vh;
+    margin: 0 auto;
+
+    display: grid;
+    grid-template-columns: 2fr 40px;
+    column-gap: 120px;
+    position: relative;
+}
