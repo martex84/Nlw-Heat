@@ -8,7 +8,9 @@ class MessagensController {
 
         const service = new MessagensServices();
 
-        const result = service.execute(message, user_id);
+        const result = await service.execute(message, user_id);
+
+        console.log(result)
 
         return response.json(result);
 
