@@ -26,7 +26,7 @@ function EnsureAutheticate(
 
         request.user_id = sub;
     } catch (error) {
-        return response.json({
+        return response.status(401).json({
             errorCode: "token.expired"
         })
     }
