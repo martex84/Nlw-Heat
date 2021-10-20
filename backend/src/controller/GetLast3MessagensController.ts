@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { GetLast3MessagensServices } from '../services/GetLast3MessagensServices'
 
-class MessagensController {
+class GetLast3MessagensController {
     async handle(request: Request, response: Response) {
 
         const service = new GetLast3MessagensServices();
@@ -13,4 +13,4 @@ class MessagensController {
     }
 }
 
-export { MessagensController };
+export { GetLast3MessagensController };
