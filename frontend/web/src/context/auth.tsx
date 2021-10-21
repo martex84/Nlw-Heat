@@ -1,9 +1,22 @@
-import { VscGithubInverted } from "react-icons/vsc"
-import { useEffect } from 'react';
+import { createContext, ReactNode, useEffect, useState } from 'react';
 
-import { api } from "../../services/api";
+import { api } from '../services/api'
 
-import style from './styles.module.scss'
+type User = {
+    id: string;
+    name: string;
+    login: string;
+    avatar_url: string;
+}
+
+type AuthContextData = {
+    user: User | null;
+    signInUrl: string;
+}
+
+type AuthProvider = {
+    children: ReactNode;
+}
 
 type AuthResponse = {
     token: string;
@@ -15,7 +28,11 @@ type AuthResponse = {
     }
 }
 
-export function LoginBox() {
+export const AuthContext = createContext({} as AuthContextData);
+
+export function AuthProvider(props: AuthProvider) {
+
+    const [user, SetUser] = useState<User | null>(null);
 
     const signInUrl = `http://github.com/login/oauth/authorize?client_id=df298856218628d2bcff`
 
@@ -28,7 +45,7 @@ export function LoginBox() {
 
         localStorage.setItem('@dowhile:token', token);
 
-        console.log(user);
+        SetUser(user);
     }
 
     useEffect(() => {
@@ -47,16 +64,8 @@ export function LoginBox() {
     }, [])
 
     return (
-        <>
-            <div className={style.loginBoxWrapper}>
-                <strong>
-                    Entre  e compartilhe sua mensagem
-                </strong>
-                <a href={signInUrl} className={style.signInWithGithub}>
-                    <VscGithubInverted size="24" />
-                    Entrar com GitHub
-                </a>
-            </div>
-        </>
+        <AuthContext.Provider value={{ signInUrl, user }}>
+            {props.children}
+        </AuthContext.Provider>
     );
 }
