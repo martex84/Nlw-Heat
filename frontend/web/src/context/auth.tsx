@@ -49,6 +49,18 @@ export function AuthProvider(props: AuthProvider) {
     }
 
     useEffect(() => {
+        const token = localStorage.getItem('@dowhile:token');
+
+        if (token) {
+            api.defaults.headers.common.authorization = `Bearer ${token}`;
+
+            api.get("profile").then(response => {
+                console.log(response);
+            })
+        }
+    }, [])
+
+    useEffect(() => {
         const url = window.location.href;
         const dividerUrl = '?code=';
 
