@@ -14,6 +14,7 @@ class MessagensServices {
         })
 
         const infoWs = {
+            id: message.id,
             text: message.text,
             user_id: message.user_id,
             create_at: message.create_at,
