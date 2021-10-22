@@ -12,7 +12,7 @@ function App() {
   const { user } = useContext(AuthContext);
 
   return (
-    <main className={style.ContentWrapper}>
+    <main className={`${style.ContentWrapper} ${!!user ? style.contentSigned : ''}`}>
       <MessageList />
       {
         !!user ? <SendMessageForm /> : <LoginBox />

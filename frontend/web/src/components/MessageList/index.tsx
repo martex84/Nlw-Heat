@@ -21,7 +21,6 @@ const socket = io('http://localhost:4000');
 
 socket.on('new_message', (newMessage: Message) => {
     messageQueue.push(newMessage);
-    console.log(newMessage)
 })
 
 export function MessageList() {
